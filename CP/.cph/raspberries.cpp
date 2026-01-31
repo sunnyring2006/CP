@@ -1,37 +1,46 @@
-#include<bits.stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 int main()
 {
     int t;
-    ciin>>t;
+    cin>>t;
     while(t--){
-        int n,k;
+        long long  n,k;
         cin>>n>>k;
 
-        int even_count=0;
-        int ans=INT_MAX;
+        long long  even_count=0;
+        long long ans=INT_MAX;
 
-        vector<int> a(n);
+        vector<long long > a(n);
 
-        for(int i=0;i<n;i++){
+        for(long long  i=0;i<n;i++){
             cin>>a[i];
         }
-        for(int i=0;i<n;i++){
-            if(a[i]%k==0){
-            cout<<0<<endl;
-            }
-
+        for(long long i=0;i<n;i++){
             if(a[i]%2==0){
-                even_count++;
+           even_count++;
             }
 
-            ans=min(ans,(k-a[i]%k));
+            if(a[i]%k==0){
+                ans=0;
+            }
+
+            ans=min(ans , (k-a[i]%k));
         }
 
-        
-
-        
-
+        if(k==4){
+            if(even_count>=2){
+                ans=min(ans,0LL);
+            }
+            else if(even_count==1){
+                ans=min(ans,1LL);
+            }
+            else if(even_count==0){
+                ans=min(ans,2LL);
+            }
+        }
+        cout<<ans<<endl;
     }
+    return 0;
 }
